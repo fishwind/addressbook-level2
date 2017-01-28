@@ -27,11 +27,21 @@ public class StorageFile {
 
     /** Default file path used if the user doesn't provide the file name. */
     public static final String DEFAULT_STORAGE_FILEPATH = "addressbook.xml";
+    public static final String MISSING_STORAGE_MESSAGE = "File storage is missing!";
 
     /* Note: Note the use of nested classes below.
      * More info https://docs.oracle.com/javase/tutorial/java/javaOO/nested.html
      */
-
+    
+    /**
+     * Signals that the original storage file is missing.
+     */
+    public static class FileMissingException extends Exception {
+    	public FileMissingException(String message) {
+    		super(message);
+    	}
+    }
+    
     /**
      * Signals that the given file path does not fulfill the storage filepath constraints.
      */

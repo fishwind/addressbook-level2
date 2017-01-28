@@ -9,6 +9,7 @@ import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.ui.TextUi;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -79,15 +80,23 @@ public class Main {
     /** Reads the user command and executes it, until the user issues the exit command.  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
-        do {
-            String userCommandText = ui.getUserCommand();
-            command = new Parser().parseCommand(userCommandText);
-            CommandResult result = executeCommand(command);
-            recordResult(result);
-            ui.showResultToUser(result);
+		do {
+			try {
+				File storageFile = new File("DEFAULT_STORAGE_FILEPATH");
+				if (!storageFile.isFile()) {
+					throw new FileMissingException("MISSING_STORAGE_MESSAGE");
+				}
+			} catch (FileMissingException e) {
+				exit();
+			}
+			String userCommandText = ui.getUserCommand();
+			command = new Parser().parseCommand(userCommandText);
+			CommandResult result = executeCommand(command);
+			recordResult(result);
+			ui.showResultToUser(result);
 
-        } while (!ExitCommand.isExit(command));
-    }
+		} while (!ExitCommand.isExit(command));
+	}
 
     /** Updates the {@link #lastShownList} if the result contains a list of Persons. */
     private void recordResult(CommandResult result) {
