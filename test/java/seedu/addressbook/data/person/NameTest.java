@@ -18,6 +18,11 @@ public class NameTest {
 	public void isSimilar_nullCompare_returnsFalse() {
 		assertFalse(name.isSimilar(null));
 	}
+	
+	@Test
+	public void isSimilar_emptyName_returnsFalse() {
+		assertFalse(name.isSimilar(""));
+	}
 }
 
 
