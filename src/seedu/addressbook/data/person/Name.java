@@ -62,19 +62,28 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /*
+     * Returns true if a given string has similar name.
+     */
     public boolean isSimilar(String other) {
     	if(other == null) {
     		return false;
     	}
-    	String thisName = this.fullName.trim();
-    	String thatName = other.trim();
-    	if(this.fullName.compareToIgnoreCase(other) == 0) {
+    	
+    	// Checks if both names have the same spelling, ignoring all whitespace. 
+    	String thisName = this.fullName.trim().toLowerCase();
+    	String thatName = other.trim().toLowerCase();
+    	String thisNameNoSpace = thisName.replaceAll("\\s+", "");
+    	String thatNameNoSpace = thatName.replaceAll("\\s+", "");
+    	if(thisName.compareTo(thatName) == 0) {
     		return true;
-    	} else if(thisName.replaceAll("\\s+", "").equalsIgnoreCase(thatName.replaceAll("\\s+", ""))) {
+    	} else if(thisNameNoSpace.equals(thatNameNoSpace)) {
     		return true;
     	}
-    	List<String> thisNameArray = Arrays.asList(thisName.toLowerCase().split("\\s+"));
-    	List<String> thatNameArray = Arrays.asList(thatName.toLowerCase().split("\\s+"));
+    	
+    	// Checks if both names have the same words, regardless their positions.
+    	String[] thisNameArray = thisName.split("\\s+");
+        String[] thatNameArray = thatName.split("\\s+");
     	HashSet<String> thisNameSet = new HashSet<String>();
     	HashSet<String> thatNameSet = new HashSet<String>();
     	for(String eachWord : thisNameArray) {
@@ -86,6 +95,7 @@ public class Name {
     	if(thisNameSet.equals(thatNameSet)) {
     		return true;
     	}
+    	
     	return false;
     }
 }

@@ -61,30 +61,12 @@ public class NameTest {
 		assertTrue(name.isSimilar(SIMILAR_NAME_ONE.toUpperCase() + "    "));
 		assertTrue(name.isSimilar(" " + SIMILAR_NAME_TWO.toLowerCase() + " "));
 	}
+	
+	@Test 
+	public void isSimilar_missingNameWord_returnsFalse() {
+		assertFalse(name.isSimilar("Yu Feng"));
+		assertFalse(name.isSimilar("Chan"));
+		assertFalse(name.isSimilar("Cha Yu Feng"));
+		assertFalse(name.isSimilar("Chan Yu fen"));
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
