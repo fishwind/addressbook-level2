@@ -23,6 +23,11 @@ public class NameTest {
 	public void isSimilar_emptyName_returnsFalse() {
 		assertFalse(name.isSimilar(""));
 	}
+	
+	@Test
+	public void isSimilar_ExactName_returnsTrue() {
+		assertTrue(name.isSimilar(this.name.toString()));
+	}
 }
 
 
