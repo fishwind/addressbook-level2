@@ -61,6 +61,9 @@ public class Name {
     }
 
     public boolean isSimilar(String other) {
+    	if(this.fullName.compareTo(other) == 0) {
+    		return true;
+    	}
     	return false;
     }
 }
