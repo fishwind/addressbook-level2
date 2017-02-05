@@ -32,6 +32,7 @@ public class NameTest {
 	@Test
 	public void isSimilar_sameIndividualWords_returnTrue() {
 		assertTrue(name.isSimilar("Feng Chan Yu"));
+		assertTrue(name.isSimilar("yU chan FeNG"));
 	}
 }
 

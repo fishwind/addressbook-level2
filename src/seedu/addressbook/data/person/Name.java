@@ -70,8 +70,10 @@ public class Name {
     	} else if(this.fullName.compareToIgnoreCase(other) == 0) {
     		return true;
     	}
-    	HashSet<String> thisNameSet = new HashSet<String>(Arrays.asList(thisName.split(" ")));
-    	HashSet<String> thatNameSet = new HashSet<String>(Arrays.asList(thatName.split(" ")));
+    	List<String> thisNameArray = Arrays.asList(thisName.toLowerCase().split(" "));
+    	List<String> thatNameArray = Arrays.asList(thatName.toLowerCase().split(" "));
+    	HashSet<String> thisNameSet = new HashSet<String>(thisNameArray);
+    	HashSet<String> thatNameSet = new HashSet<String>(thatNameArray);
     	if(thisNameSet.equals(thatNameSet)) {
     		return true;
     	}
