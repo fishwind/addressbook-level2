@@ -63,19 +63,26 @@ public class Name {
     }
 
     public boolean isSimilar(String other) {
-    	String thisName = this.fullName;
-    	String thatName = other;
     	if(other == null) {
     		return false;
-    	} else if(this.fullName.compareToIgnoreCase(other) == 0) {
+    	}
+    	String thisName = this.fullName.trim();
+    	String thatName = other.trim();
+    	if(this.fullName.compareToIgnoreCase(other) == 0) {
     		return true;
     	} else if(thisName.replaceAll("\\s+", "").equalsIgnoreCase(thatName.replaceAll("\\s+", ""))) {
     		return true;
     	}
-    	List<String> thisNameArray = Arrays.asList(thisName.toLowerCase().split(" "));
-    	List<String> thatNameArray = Arrays.asList(thatName.toLowerCase().split(" "));
-    	HashSet<String> thisNameSet = new HashSet<String>(thisNameArray);
-    	HashSet<String> thatNameSet = new HashSet<String>(thatNameArray);
+    	List<String> thisNameArray = Arrays.asList(thisName.toLowerCase().split("\\s+"));
+    	List<String> thatNameArray = Arrays.asList(thatName.toLowerCase().split("\\s+"));
+    	HashSet<String> thisNameSet = new HashSet<String>();
+    	HashSet<String> thatNameSet = new HashSet<String>();
+    	for(String eachWord : thisNameArray) {
+    		thisNameSet.add(eachWord.trim());
+    	}
+    	for(String eachWord : thatNameArray) {
+    		thatNameSet.add(eachWord.trim());
+    	}
     	if(thisNameSet.equals(thatNameSet)) {
     		return true;
     	}

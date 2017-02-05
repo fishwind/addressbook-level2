@@ -52,6 +52,15 @@ public class NameTest {
 		assertTrue(name.isSimilar("C han Yu Feng"));
 		assertTrue(name.isSimilar("Ch an Yu Fe ng"));
 	}
+	
+	@Test 
+	public void isSimilar_similarNameExtraSpace_returnsTrue() {
+		assertTrue(name.isSimilar("Chan     Yu             Feng"));
+		assertTrue(name.isSimilar("Feng Yu      Chan"));
+		assertTrue(name.isSimilar("chAn  FENG    yu"));
+		assertTrue(name.isSimilar(SIMILAR_NAME_ONE.toUpperCase() + "    "));
+		assertTrue(name.isSimilar(" " + SIMILAR_NAME_TWO.toLowerCase() + " "));
+	}
 }
 
 
