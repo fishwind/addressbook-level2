@@ -69,6 +69,8 @@ public class Name {
     		return false;
     	} else if(this.fullName.compareToIgnoreCase(other) == 0) {
     		return true;
+    	} else if(thisName.replaceAll("\\s+", "").equalsIgnoreCase(thatName.replaceAll("\\s+", ""))) {
+    		return true;
     	}
     	List<String> thisNameArray = Arrays.asList(thisName.toLowerCase().split(" "));
     	List<String> thatNameArray = Arrays.asList(thatName.toLowerCase().split(" "));

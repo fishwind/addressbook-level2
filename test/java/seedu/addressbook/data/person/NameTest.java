@@ -8,10 +8,14 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class NameTest {
 	
 	private Name name;
+	private static final String ACTUAL_NAME = "Chan Yu Feng";
+	private static final String SIMILAR_NAME_ONE = "Feng Chan Yu";
+	private static final String SIMILAR_NAME_TWO = "yU chan FeNG";
+
 	
 	@Before
 	public void setup() throws IllegalValueException  {
-	    name = new Name("Chan Yu Feng");
+	    name = new Name(ACTUAL_NAME);
 	}
 	
 	@Test
@@ -27,16 +31,27 @@ public class NameTest {
 	
 	
 	@Test
-	public void isSimilar_ExactSpellings_returnsTrue() {
+	public void isSimilar_exactSpellings_returnsTrue() {
 		assertTrue(name.isSimilar(this.name.toString()));
+		assertTrue(name.isSimilar(name.toString().toUpperCase()));
+		assertTrue(name.isSimilar(name.toString().toLowerCase()));
 	}
 
 	@Test
 	public void isSimilar_sameIndividualWords_returnTrue() {
-		assertTrue(name.isSimilar("Feng Chan Yu"));
-		assertTrue(name.isSimilar("yU chan FeNG"));
+		assertTrue(name.isSimilar(SIMILAR_NAME_ONE));
+		assertTrue(name.isSimilar(SIMILAR_NAME_TWO));
+		assertTrue(name.isSimilar(SIMILAR_NAME_ONE.toUpperCase()));
+		assertTrue(name.isSimilar(SIMILAR_NAME_TWO.toLowerCase()));
 	}
 	
+	@Test
+	public void isSimilar_sameSpellingDifferentWord_returnsTrue() {
+		assertTrue(name.isSimilar("Chan YuFeng"));
+		assertTrue(name.isSimilar("ChanYuFeng"));
+		assertTrue(name.isSimilar("C han Yu Feng"));
+		assertTrue(name.isSimilar("Ch an Yu Fe ng"));
+	}
 }
 
 
