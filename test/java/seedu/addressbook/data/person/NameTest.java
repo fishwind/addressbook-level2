@@ -22,7 +22,9 @@ public class NameTest {
 	@Test
 	public void isSimilar_emptyName_returnsFalse() {
 		assertFalse(name.isSimilar(""));
+		assertFalse(name.toString().length() < 1);
 	}
+	
 	
 	@Test
 	public void isSimilar_ExactSpellings_returnsTrue() {
@@ -34,6 +36,7 @@ public class NameTest {
 		assertTrue(name.isSimilar("Feng Chan Yu"));
 		assertTrue(name.isSimilar("yU chan FeNG"));
 	}
+	
 }
 
 
