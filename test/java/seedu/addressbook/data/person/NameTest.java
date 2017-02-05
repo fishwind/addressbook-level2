@@ -28,6 +28,11 @@ public class NameTest {
 	public void isSimilar_ExactName_returnsTrue() {
 		assertTrue(name.isSimilar(this.name.toString()));
 	}
+	
+	@Test
+	public void isSimilar_ExactLetters_returnsTrue() {
+		assertTrue(name.isSimilar(this.name.toString()));
+	}
 }
 
 
