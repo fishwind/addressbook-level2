@@ -60,4 +60,7 @@ public class Name {
         return fullName.hashCode();
     }
 
+    public boolean isSimilar(String other) {
+    	return false;
+    }
 }
