@@ -25,13 +25,13 @@ public class NameTest {
 	}
 	
 	@Test
-	public void isSimilar_ExactName_returnsTrue() {
+	public void isSimilar_ExactSpellings_returnsTrue() {
 		assertTrue(name.isSimilar(this.name.toString()));
 	}
-	
+
 	@Test
-	public void isSimilar_ExactLetters_returnsTrue() {
-		assertTrue(name.isSimilar(this.name.toString()));
+	public void isSimilar_sameIndividualWords_returnTrue() {
+		assertTrue(name.isSimilar("Feng Chan Yu"));
 	}
 }
 

@@ -4,6 +4,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.HashSet;
+
 
 /**
  * Represents a Person's name in the address book.
@@ -61,12 +63,18 @@ public class Name {
     }
 
     public boolean isSimilar(String other) {
+    	String thisName = this.fullName;
+    	String thatName = other;
     	if(other == null) {
     		return false;
     	} else if(this.fullName.compareToIgnoreCase(other) == 0) {
     		return true;
     	}
+    	HashSet<String> thisNameSet = new HashSet<String>(Arrays.asList(thisName.split(" ")));
+    	HashSet<String> thatNameSet = new HashSet<String>(Arrays.asList(thatName.split(" ")));
+    	if(thisNameSet.equals(thatNameSet)) {
+    		return true;
+    	}
     	return false;
-    	
     }
 }
