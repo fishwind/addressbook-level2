@@ -10,49 +10,63 @@ import org.junit.Test;
 
 public class UtilsTest {
     @Test
-    public void isAnyNull() {
-        // empty list
+    public void isAnyNull_empty_returnsFalse() {
         assertFalse(Utils.isAnyNull());
-
-        // Any non-empty list
+    }
+    
+    @Test
+    public void isAnyNull_nonEmptyNoNull_returnsFalse() {
         assertFalse(Utils.isAnyNull(new Object(), new Object()));
         assertFalse(Utils.isAnyNull("test"));
         assertFalse(Utils.isAnyNull(""));
-
+    }
+    
+    @Test
+    public void isAnyNull_oneNull_returnsTrue() {
         // non empty list with just one null at the beginning
         assertTrue(Utils.isAnyNull((Object) null));
         assertTrue(Utils.isAnyNull(null, "", new Object()));
         assertTrue(Utils.isAnyNull(null, new Object(), new Object()));
-
-        // non empty list with nulls in the middle
+    }
+    @Test
+    public void isAnyNull_nullMiddle_returnsTrue() {
         assertTrue(Utils.isAnyNull(new Object(), null, null, "test"));
         assertTrue(Utils.isAnyNull("", null, new Object()));
-
-        // non empty list with one null as the last element
+    }
+    
+    @Test
+    public void isAnyNull_nullLast_returnsTrue() {
         assertTrue(Utils.isAnyNull("", new Object(), null));
         assertTrue(Utils.isAnyNull(new Object(), new Object(), null));
-
-        // confirms nulls inside the list are not considered
+    }
+    
+    @Test
+    public void isAnyNull_listWithNull_returnsFalse() {
         List<Object> nullList = Arrays.asList((Object) null);
         assertFalse(Utils.isAnyNull(nullList));
     }
 
     @Test
-    public void elementsAreUnique() throws Exception {
-        // empty list
+    public void elementsAreUnique_empty_returnsTrue() throws Exception {
         assertAreUnique();
-
-        // only one object
+    }
+    
+    @Test
+    public void elementsAreUnique_oneObject_returnsTrue() throws Exception { 
         assertAreUnique((Object) null);
         assertAreUnique(1);
         assertAreUnique("");
         assertAreUnique("abc");
-
-        // all objects unique
+    }
+    
+    @Test
+    public void elementsAreUnique_allUnique_returnsTrue() throws Exception {
         assertAreUnique("abc", "ab", "a");
         assertAreUnique(1, 2);
-
-        // some identical objects
+    }
+    
+    @Test
+    public void elementsAreUnique_someIdentical_returnsFalse() throws Exception {
         assertNotUnique("abc", "abc");
         assertNotUnique("abc", "", "abc", "ABC");
         assertNotUnique("", "abc", "a", "abc");
